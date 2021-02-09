@@ -4,6 +4,7 @@ import Search from '../Screens/Search';
 import Map from '../Screens/Map';
 import { NavigationParamList } from './types';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator<NavigationParamList>();
 
@@ -12,7 +13,8 @@ const Navigation = () => (
     initialRouteName={'Map'}
     backBehavior={'initialRoute'}
     tabBarOptions={{
-      tabStyle: { justifyContent: 'center', backgroundColor: '#000' },
+      tabStyle: style.tabBar,
+      style: style.navigator,
     }}>
     <Tab.Screen
       name={'Map'}
@@ -34,5 +36,15 @@ const Navigation = () => (
     />
   </Tab.Navigator>
 );
+
+const style = StyleSheet.create({
+  tabBar: {
+    justifyContent: 'center',
+    backgroundColor: '#000',
+  },
+  navigator: {
+    borderTopWidth: 0,
+  },
+});
 
 export default Navigation;
