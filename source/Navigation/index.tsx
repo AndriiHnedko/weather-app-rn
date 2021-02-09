@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Search from '../Screens/Search';
 import Map from '../Screens/Map';
-import { NavigationParamList } from '../Screens/Map/types';
+import { NavigationParamList } from './types';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator<NavigationParamList>();

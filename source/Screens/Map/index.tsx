@@ -12,7 +12,6 @@ const Map = memo(() => {
         <MapView
           provider={'google'}
           customMapStyle={customMapStyle}
-          // mapType={MAP_TYPES.TERRAIN}
           style={styles.map}
         />
       </View>
