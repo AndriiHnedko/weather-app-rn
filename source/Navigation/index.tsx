@@ -1,50 +1,18 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Search from '../Screens/Search';
 import Map from '../Screens/Map';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationParamList } from './types';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { StyleSheet } from 'react-native';
 
-const Tab = createBottomTabNavigator<NavigationParamList>();
+const Stack = createStackNavigator<NavigationParamList>();
 
-const Navigation = () => (
-  <Tab.Navigator
-    initialRouteName={'Map'}
-    backBehavior={'initialRoute'}
-    tabBarOptions={{
-      tabStyle: style.tabBar,
-      style: style.navigator,
-    }}>
-    <Tab.Screen
-      name={'Map'}
-      component={Map}
-      options={{
-        tabBarIcon: ({ color, size }) => (
-          <Icon name="map" size={size} color={color} />
-        ),
-      }}
-    />
-    <Tab.Screen
-      name={'Search'}
-      component={Search}
-      options={{
-        tabBarIcon: ({ color, size }) => (
-          <Icon name="search" size={size} color={color} />
-        ),
-      }}
-    />
-  </Tab.Navigator>
-);
-
-const style = StyleSheet.create({
-  tabBar: {
-    justifyContent: 'center',
-    backgroundColor: '#000',
-  },
-  navigator: {
-    borderTopWidth: 0,
-  },
-});
+const Navigation = () => {
+  return (
+    <Stack.Navigator initialRouteName={'Search'} headerMode={'none'}>
+      <Stack.Screen name={'Map'} component={Map} />
+      <Stack.Screen name={'Search'} component={Search} />
+    </Stack.Navigator>
+  );
+};
 
 export default Navigation;
