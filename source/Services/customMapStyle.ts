@@ -45,15 +45,6 @@ export const customMapStyle = [
     ],
   },
   {
-    featureType: 'all',
-    elementType: 'labels.icon',
-    stylers: [
-      {
-        visibility: 'off',
-      },
-    ],
-  },
-  {
     featureType: 'landscape',
     elementType: 'geometry',
     stylers: [
