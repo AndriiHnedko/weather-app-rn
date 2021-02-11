@@ -79,7 +79,7 @@ const Card = memo<PropsType>((props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#096ee2',
+    backgroundColor: '#01BAEF',
     elevation: 10,
     borderRadius: 2,
     padding: 10,

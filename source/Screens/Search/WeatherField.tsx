@@ -61,7 +61,7 @@ const WeatherField: React.FC<PropsType> = ({
 
   return (
     <Animated.View style={[animatedStyle]}>
-      <View style={{ ...styles.container }}>
+      <View style={[styles.container]}>
         <Text style={{ ...styles.text, ...styles.left }}>
           {focusedDay[0].toUpperCase() + focusedDay.slice(1)}
         </Text>
@@ -83,14 +83,15 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     height: 50,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     marginBottom: 40,
     justifyContent: 'space-between',
-    elevation: 10,
+    elevation: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'blue',
-    marginHorizontal: 35,
+    marginLeft: 35,
+    marginRight: 70,
+    backgroundColor: '#01BAEF',
   },
   text: {
     fontSize: 20,
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     flex: 1,
+    alignItems: 'center',
   },
   image: { width: 40, height: 40 },
 });

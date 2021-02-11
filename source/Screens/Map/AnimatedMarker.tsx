@@ -37,7 +37,7 @@ const AnimatedMarker = memo<PropsType>((props) => {
 
   return (
     <Animated.View style={[styles.marker, animatedStyle]}>
-      <Icon name={'map-marker-alt'} size={30} color={'#fb8926'} />
+      <Icon name={'map-marker-alt'} size={30} color={'#C5283D'} />
     </Animated.View>
   );
 });

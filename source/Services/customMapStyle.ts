@@ -1,26 +1,8 @@
 export const customMapStyle = [
   {
     featureType: 'all',
-    elementType: 'geometry',
-    stylers: [
-      {
-        color: '#202c3e',
-      },
-    ],
-  },
-  {
-    featureType: 'all',
     elementType: 'labels.text.fill',
     stylers: [
-      {
-        gamma: 0.01,
-      },
-      {
-        lightness: 20,
-      },
-      {
-        weight: '1.39',
-      },
       {
         color: '#ffffff',
       },
@@ -31,31 +13,43 @@ export const customMapStyle = [
     elementType: 'labels.text.stroke',
     stylers: [
       {
-        weight: '0.96',
+        color: '#000000',
       },
       {
-        saturation: '9',
+        lightness: 13,
       },
-      {
-        visibility: 'on',
-      },
+    ],
+  },
+  {
+    featureType: 'administrative',
+    elementType: 'geometry.fill',
+    stylers: [
       {
         color: '#000000',
       },
     ],
   },
   {
-    featureType: 'landscape',
-    elementType: 'geometry',
+    featureType: 'administrative',
+    elementType: 'geometry.stroke',
     stylers: [
       {
-        lightness: 30,
+        color: '#144b53',
       },
       {
-        saturation: '9',
+        lightness: 14,
       },
       {
-        color: '#29446b',
+        weight: 1.4,
+      },
+    ],
+  },
+  {
+    featureType: 'landscape',
+    elementType: 'all',
+    stylers: [
+      {
+        color: '#08304b',
       },
     ],
   },
@@ -64,55 +58,70 @@ export const customMapStyle = [
     elementType: 'geometry',
     stylers: [
       {
-        saturation: 20,
+        color: '#0c4152',
+      },
+      {
+        lightness: 5,
       },
     ],
   },
   {
-    featureType: 'poi.park',
-    elementType: 'geometry',
-    stylers: [
-      {
-        lightness: 20,
-      },
-      {
-        saturation: -20,
-      },
-    ],
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: [
-      {
-        lightness: 10,
-      },
-      {
-        saturation: -30,
-      },
-    ],
-  },
-  {
-    featureType: 'road',
+    featureType: 'road.highway',
     elementType: 'geometry.fill',
     stylers: [
       {
-        color: '#193a55',
+        color: '#000000',
       },
     ],
   },
   {
-    featureType: 'road',
+    featureType: 'road.highway',
     elementType: 'geometry.stroke',
     stylers: [
       {
-        saturation: 25,
+        color: '#0b434f',
       },
       {
         lightness: 25,
       },
+    ],
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'geometry.fill',
+    stylers: [
       {
-        weight: '0.01',
+        color: '#000000',
+      },
+    ],
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'geometry.stroke',
+    stylers: [
+      {
+        color: '#0b3d51',
+      },
+      {
+        lightness: 16,
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#000000',
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'all',
+    stylers: [
+      {
+        color: '#146474',
       },
     ],
   },
@@ -121,7 +130,7 @@ export const customMapStyle = [
     elementType: 'all',
     stylers: [
       {
-        lightness: -20,
+        color: '#021019',
       },
     ],
   },

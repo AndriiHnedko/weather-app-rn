@@ -67,7 +67,7 @@ const Search = memo(() => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#202c3e',
+    backgroundColor: '#08304a',
     flex: 1,
   },
   result: {

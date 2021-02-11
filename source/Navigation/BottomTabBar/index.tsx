@@ -23,7 +23,7 @@ const BottomTabBar: React.FC<PropsType> = ({ children, onRepeatPress }) => {
     <SafeAreaView style={[styles.area]}>
       <StatusBar barStyle="default" backgroundColor={'#000'} />
       <TabBarProvider
-        activeColor={'#1383ff'}
+        activeColor={'#01BAEF'}
         inactiveColor={'#8d8d8d'}
         iconSize={28}
         labelStyle={styles.labelStyle}>
