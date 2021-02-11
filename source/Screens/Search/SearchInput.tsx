@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
 import { getWeekWeatherCity } from '../../Redux/weather/actions';
+import Loader from './Loader';
 
 type PropsType = {
   defaultValue: string;
@@ -31,6 +32,7 @@ const SearchInput = memo<PropsType>(({ defaultValue }) => {
       <TouchableOpacity style={[styles.icon]} onPress={onPressSearch}>
         <Icon name="search" size={40} color={'white'} />
       </TouchableOpacity>
+      <Loader />
     </View>
   );
 });

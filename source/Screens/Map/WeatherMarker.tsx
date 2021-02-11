@@ -7,14 +7,13 @@ import { StoreType } from '../../Redux';
 
 const WeatherMarker = memo(() => {
   const weather = useSelector((s: StoreType) => s.weather.currentWeather);
-  const duration = 500;
   const animationValue = {
     marker: {
       opacity: 1,
       translateY: 0,
-      duration,
+      duration: 500,
     },
-    card: { height: 80, opacity: 1, duration },
+    card: { height: 80, opacity: 1, duration: 200 },
   };
 
   return (
