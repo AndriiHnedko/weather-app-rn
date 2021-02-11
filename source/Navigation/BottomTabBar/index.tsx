@@ -13,11 +13,11 @@ type PropsType = {
 const BottomTabBar: React.FC<PropsType> = ({ children, onRepeatPress }) => {
   const navigation = useNavigation();
   const router = useRoute();
-  const navigateTo = (name: string) => {
+  const navigateTo = (name: string, params?: any) => {
     if (router.name === name && onRepeatPress) {
       onRepeatPress();
     }
-    navigation.navigate(name);
+    navigation.navigate(name, params);
   };
   return (
     <SafeAreaView style={[styles.area]}>
@@ -38,6 +38,7 @@ const BottomTabBar: React.FC<PropsType> = ({ children, onRepeatPress }) => {
               name={'Search'}
               tabBarIcon={'search'}
               navigateTo={navigateTo}
+              params={{ discharge: 'discharge' }}
             />
           </View>
           <View style={styles.child}>{children}</View>

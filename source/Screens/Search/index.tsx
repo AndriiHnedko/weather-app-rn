@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import SearchInput from './SearchInput';
 import BottomTabBar from '../../Navigation/BottomTabBar/index';
@@ -12,9 +12,11 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { resetWeek } from '../../Redux/weather/actions';
+import { useRoute } from '@react-navigation/native';
 
 const Search = memo(() => {
   const dispatch = useDispatch();
+  const route = useRoute();
   const weatherData = useSelector((s: StoreType) => s.weather.weekWeather);
   const defaultInputValue = weatherData
     ? `${weatherData.city_name}, ${weatherData.country_code}`
@@ -46,6 +48,10 @@ const Search = memo(() => {
       );
     });
   };
+
+  useEffect(() => {
+    dispatch(resetWeek());
+  }, [route.params]);
 
   return (
     <BottomTabBar onRepeatPress={repeatPressHandler}>
