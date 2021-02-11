@@ -7,8 +7,6 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated';
-import { useSelector } from 'react-redux';
-import { StoreType } from '../../Redux';
 
 const daysOfWeek = [
   'sunday',
@@ -33,8 +31,7 @@ const WeatherField: React.FC<PropsType> = ({
   date,
   delay,
 }) => {
-  const { loading } = useSelector((s: StoreType) => s.weather);
-  const duration = 200;
+  const duration = 500;
   const dayId = new Date(date).getDay();
   const focusedDay = daysOfWeek[dayId];
   const stateTranslateX = useSharedValue(-200);
@@ -60,16 +57,7 @@ const WeatherField: React.FC<PropsType> = ({
     animateItem(0, delay, duration);
   };
 
-  const hideItem = () => {
-    animateItem(0, delay, duration);
-  };
-
   useEffect(showItem);
-  useEffect(() => {
-    if (loading) {
-      hideItem();
-    }
-  }, [loading]);
 
   return (
     <Animated.View style={[animatedStyle]}>
@@ -82,7 +70,7 @@ const WeatherField: React.FC<PropsType> = ({
             source={{
               uri: `https://www.weatherbit.io/static/img/icons/${picture}.png`,
             }}
-            style={{ width: 40, height: 40 }}
+            style={styles.image}
           />
           <Text style={styles.text}>{Math.floor(temperature)}&deg;</Text>
         </View>
@@ -102,6 +90,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'blue',
+    marginHorizontal: 35,
   },
   text: {
     fontSize: 20,
@@ -115,6 +104,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
   },
+  image: { width: 40, height: 40 },
 });
 
 export default WeatherField;

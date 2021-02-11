@@ -42,8 +42,12 @@ const Map = () => {
     navigation.navigate('Search');
   };
 
+  const repeatPressHandler = () => {
+    setCoordinate(undefined);
+  };
+
   return (
-    <BottomTabBar>
+    <BottomTabBar onRepeatPress={repeatPressHandler}>
       <View style={[styles.container]}>
         <MapView
           provider={'google'}

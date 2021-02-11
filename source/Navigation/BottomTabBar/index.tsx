@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 import TabBarProvider from './Context';
@@ -7,11 +7,18 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 type PropsType = {
   children: React.ReactNode;
+  onRepeatPress?: () => void;
 };
 
-const BottomTabBar: React.FC<PropsType> = ({ children }) => {
+const BottomTabBar: React.FC<PropsType> = ({ children, onRepeatPress }) => {
   const navigation = useNavigation();
-  const navigateTo = (name: string) => navigation.navigate(name);
+  const router = useRoute();
+  const navigateTo = (name: string) => {
+    if (router.name === name && onRepeatPress) {
+      onRepeatPress();
+    }
+    navigation.navigate(name);
+  };
   return (
     <SafeAreaView style={[styles.area]}>
       <StatusBar barStyle="default" backgroundColor={'#000'} />

@@ -1,11 +1,14 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getWeekWeatherCity } from '../../Redux/weather/actions';
-import { StoreType } from '../../Redux';
 
-const SearchInput = memo(() => {
+type PropsType = {
+  defaultValue: string;
+};
+
+const SearchInput = memo<PropsType>(({ defaultValue }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const onPressSearch = useCallback(() => {
@@ -13,19 +16,9 @@ const SearchInput = memo(() => {
       dispatch(getWeekWeatherCity(value));
     }
   }, [dispatch, value]);
-
-  const weekWeather = useSelector((s: StoreType) => s.weather.weekWeather);
-
-  const setCityName = useCallback(() => {
-    if (weekWeather) {
-      setValue(`${weekWeather.city_name}, ${weekWeather.country_code} `);
-    }
-  }, [weekWeather]);
-
   useEffect(() => {
-    setCityName();
-  }, [weekWeather, setCityName]);
-
+    setValue(defaultValue);
+  }, [defaultValue]);
   return (
     <View style={[styles.container]}>
       <TextInput
