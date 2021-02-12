@@ -6,23 +6,24 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { useSelector } from 'react-redux';
-import { StoreType } from '../../Redux';
 
-const Loader = () => {
-  const loading = useSelector((s: StoreType) => s.weather.loading);
+type PropsType = {
+  loading: boolean;
+};
+
+const Loader: React.FC<PropsType> = ({ loading }) => {
   const opacity = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
   }));
-  const initAnimation = (toOpacity: number) => {
+  const initAnimation = (toOpacity: number, duration: number) => {
     opacity.value = withTiming(toOpacity, {
-      duration: 500,
+      duration: duration,
       easing: Easing.out(Easing.exp),
     });
   };
   useEffect(() => {
-    loading ? initAnimation(1) : initAnimation(0);
+    loading ? initAnimation(1, 1000) : initAnimation(0, 500);
   }, [loading]);
   return (
     <Animated.View style={[animatedStyle, styles.container]}>
@@ -34,9 +35,9 @@ const Loader = () => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    right: 60,
-    bottom: 14,
-    transform: [{ scale: 1.3 }],
+    transform: [{ scale: 2.7 }],
+    left: 2,
+    top: 5,
   },
 });
 

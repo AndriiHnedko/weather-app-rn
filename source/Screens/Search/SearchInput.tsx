@@ -1,9 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getWeekWeatherCity } from '../../Redux/weather/actions';
-import Loader from './Loader';
+import SearchButton from './SearchButton';
 
 type PropsType = {
   defaultValue: string;
@@ -12,8 +11,9 @@ type PropsType = {
 const SearchInput = memo<PropsType>(({ defaultValue }) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
+  const validate = value.length > 3;
   const onPressSearch = useCallback(() => {
-    if (value.length > 3) {
+    if (validate) {
       dispatch(getWeekWeatherCity(value));
     }
   }, [dispatch, value]);
@@ -22,17 +22,20 @@ const SearchInput = memo<PropsType>(({ defaultValue }) => {
   }, [defaultValue]);
   return (
     <View style={[styles.container]}>
-      <TextInput
-        style={[styles.input]}
-        placeholder={'Type city name...'}
-        placeholderTextColor={'#8d8d8d'}
-        onChangeText={setValue}
-        value={value}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={[styles.input]}
+          placeholder={'Type city name...'}
+          placeholderTextColor={'rgba(255,255,255, 0.6)'}
+          onChangeText={setValue}
+          value={value}
+        />
+      </View>
+      <SearchButton
+        onPress={onPressSearch}
+        active={validate}
+        style={styles.icon}
       />
-      <TouchableOpacity style={[styles.icon]} onPress={onPressSearch}>
-        <Icon name="search" size={40} color={'white'} />
-      </TouchableOpacity>
-      <Loader />
     </View>
   );
 });
@@ -44,18 +47,24 @@ const styles = StyleSheet.create({
     margin: 15,
     alignItems: 'center',
   },
-  input: {
+  inputContainer: {
     flex: 1,
+    marginLeft: 20,
+    marginRight: 5,
+    backgroundColor: 'rgba(255,255,255, 0.04)',
+    borderColor: 'rgba(255,255,255, 0.6)',
+    borderWidth: 1,
+  },
+  input: {
     height: 40,
-    borderBottomColor: '#fff',
-    borderBottomWidth: 2,
-    color: '#fff',
+    color: 'rgba(255,255,255, 1)',
     fontSize: 18,
     paddingHorizontal: 10,
-    marginLeft: 20,
+    marginTop: 1,
   },
   icon: {
     marginLeft: 15,
+    marginRight: 5,
   },
 });
 
