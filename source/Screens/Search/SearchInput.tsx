@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { getWeekWeatherCity } from '../../Redux/weather/actions';
@@ -9,10 +9,12 @@ type PropsType = {
 };
 
 const SearchInput = memo<PropsType>(({ defaultValue }) => {
+  const _input = useRef<React.ElementRef<typeof TextInput>>(null);
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const validate = value.length > 3;
   const onPressSearch = useCallback(() => {
+    _input.current?.blur();
     if (validate) {
       dispatch(getWeekWeatherCity(value));
     }
@@ -24,11 +26,14 @@ const SearchInput = memo<PropsType>(({ defaultValue }) => {
     <View style={[styles.container]}>
       <View style={styles.inputContainer}>
         <TextInput
+          ref={_input}
           style={[styles.input]}
           placeholder={'Type city name...'}
           placeholderTextColor={'rgba(255,255,255, 0.6)'}
           onChangeText={setValue}
           value={value}
+          onSubmitEditing={onPressSearch}
+          selectionColor={'rgba(255,255,255, 0.6)'}
         />
       </View>
       <SearchButton
@@ -44,7 +49,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 15,
+    marginHorizontal: 15,
+    marginTop: 5,
     alignItems: 'center',
   },
   inputContainer: {
@@ -65,6 +71,7 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 15,
     marginRight: 5,
+    marginBottom: 5,
   },
 });
 

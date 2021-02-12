@@ -21,7 +21,7 @@ const BottomTabBar: React.FC<PropsType> = ({ children, onRepeatPress }) => {
   };
   return (
     <SafeAreaView style={[styles.area]}>
-      <StatusBar barStyle="default" backgroundColor={'#000'} />
+      <StatusBar barStyle="default" backgroundColor={'#08304a'} />
       <TabBarProvider
         activeColor={'#01BAEF'}
         inactiveColor={'#8d8d8d'}
@@ -31,12 +31,13 @@ const BottomTabBar: React.FC<PropsType> = ({ children, onRepeatPress }) => {
           <View style={styles.container}>
             <TabBarItem
               name={'Map'}
-              tabBarIcon={'map'}
+              icon={'map'}
+              outLineIcon={'map-o'}
               navigateTo={navigateTo}
             />
             <TabBarItem
               name={'Search'}
-              tabBarIcon={'search'}
+              icon={'search'}
               navigateTo={navigateTo}
               params={{ discharge: 'discharge' }}
             />

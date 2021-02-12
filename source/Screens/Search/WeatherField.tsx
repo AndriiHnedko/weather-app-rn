@@ -84,13 +84,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 50,
     paddingHorizontal: 20,
-    marginBottom: 40,
     justifyContent: 'space-between',
     elevation: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 35,
-    marginRight: 70,
     backgroundColor: '#01BAEF',
   },
   text: {

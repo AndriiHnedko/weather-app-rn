@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
 import SearchInput from './SearchInput';
 import BottomTabBar from '../../Navigation/BottomTabBar/index';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,21 +16,26 @@ import { useRoute } from '@react-navigation/native';
 
 const Search = memo(() => {
   const dispatch = useDispatch();
+
+  const windowWidth = Dimensions.get('window').width;
   const route = useRoute();
   const weatherData = useSelector((s: StoreType) => s.weather.weekWeather);
   const defaultInputValue = weatherData
     ? `${weatherData.city_name}, ${weatherData.country_code}`
     : '';
-  const translateY = useSharedValue(0);
+  const translateX = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: translateY.value }],
+    transform: [{ translateX: translateX.value }],
   }));
   const repeatPressHandler = () => {
-    translateY.value = withTiming(800, {
+    translateX.value = withTiming(windowWidth, {
       duration: 500,
       easing: Easing.out(Easing.exp),
     });
-    setTimeout(dispatch, 300, resetWeek());
+    setTimeout(() => {
+      dispatch(resetWeek());
+      translateX.value = 0;
+    }, 600);
   };
 
   const _renderWeather = () => {
@@ -58,7 +63,7 @@ const Search = memo(() => {
       <View style={[styles.container]}>
         <SearchInput defaultValue={defaultInputValue} />
         <Animated.View style={[styles.result, animatedStyle]}>
-          <ScrollView style={styles.scroll}>{_renderWeather()}</ScrollView>
+          {_renderWeather()}
         </Animated.View>
       </View>
     </BottomTabBar>
@@ -72,10 +77,10 @@ const styles = StyleSheet.create({
   },
   result: {
     flex: 1,
-    justifyContent: 'center',
-    paddingTop: 15,
+    justifyContent: 'space-evenly',
+    marginLeft: 35,
+    marginRight: 70,
   },
-  scroll: { paddingVertical: 35 },
 });
 
 export default Search;

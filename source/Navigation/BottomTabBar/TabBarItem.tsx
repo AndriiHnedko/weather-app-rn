@@ -5,28 +5,37 @@ import { TabBarContext } from './Context';
 
 type TabItemProps = {
   name: string;
-  tabBarIcon: string;
+  icon: string;
+  outLineIcon?: string;
   navigateTo: (name: string, params?: any) => void;
   params?: any;
 };
 
 const TabBarItem: React.FC<TabItemProps> = ({
-  tabBarIcon,
+  icon,
   name,
   navigateTo,
   params,
+  outLineIcon,
 }) => {
   const _tabBar = useContext(TabBarContext);
   const { activeColor, inactiveColor, active, iconSize, labelStyle } = _tabBar;
-  const color = active === name ? activeColor : inactiveColor;
+  const isActive = active === name;
   const pressHandler = () => navigateTo(name, params);
   return (
     <TouchableOpacity
       onPress={pressHandler}
       activeOpacity={0.4}
       style={styles.container}>
-      <Icon name={tabBarIcon} size={iconSize} color={color} />
-      <Text style={[{ color: color }, labelStyle]}>{name}</Text>
+      <Icon
+        name={outLineIcon && !isActive ? outLineIcon : icon}
+        size={iconSize}
+        color={isActive ? activeColor : inactiveColor}
+      />
+      <Text
+        style={[{ color: isActive ? activeColor : inactiveColor }, labelStyle]}>
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 };
