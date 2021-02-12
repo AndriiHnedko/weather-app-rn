@@ -8,7 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-const daysOfWeek = [
+const DAYS_ON_WEEK = [
   'sunday',
   'monday',
   'tuesday',
@@ -33,7 +33,7 @@ const WeatherField: React.FC<PropsType> = ({
 }) => {
   const duration = 500;
   const dayId = new Date(date).getDay();
-  const focusedDay = daysOfWeek[dayId];
+  const focusedDay = DAYS_ON_WEEK[dayId];
   const stateTranslateX = useSharedValue(-200);
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: stateTranslateX.value }],

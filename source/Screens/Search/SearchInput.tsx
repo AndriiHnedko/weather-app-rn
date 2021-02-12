@@ -16,7 +16,7 @@ const SearchInput = memo<PropsType>(({ defaultValue }) => {
     if (validate) {
       dispatch(getWeekWeatherCity(value));
     }
-  }, [dispatch, value]);
+  }, [dispatch, value, validate]);
   useEffect(() => {
     setValue(defaultValue);
   }, [defaultValue]);

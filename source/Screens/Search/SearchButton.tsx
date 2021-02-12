@@ -58,11 +58,7 @@ const SearchButton: React.FC<PropsType> = ({ onPress, active, style }) => {
         style={styles.button}
         activeOpacity={1}>
         <Animated.View style={animatedStyle}>
-          <Icon
-            name="search"
-            size={30}
-            color={active ? '#fff' : 'rgba(255,255,255, 1)'}
-          />
+          <Icon name="search" size={30} color={'#fff'} />
         </Animated.View>
       </TouchableOpacity>
       <Loader loading={loading} />
