@@ -9,11 +9,10 @@ const WeatherMarker = memo(() => {
   const weather = useSelector((s: StoreType) => s.weather.currentWeather);
   const animationValue = {
     marker: {
-      opacity: 1,
       translateY: 0,
-      duration: 500,
+      duration: 1000,
     },
-    card: { height: 80, opacity: 1, duration: 200 },
+    card: { height: 80, duration: 500 },
   };
 
   return (

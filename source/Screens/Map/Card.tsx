@@ -9,20 +9,17 @@ import Animated, {
 import { CurrentWeatherType } from '../../Services/api';
 
 type PropsType = {
-  opacity: number;
   height: number;
   duration: number;
   weather: CurrentWeatherType;
 };
 
 const Card = memo<PropsType>((props) => {
-  const opacity = useSharedValue(0);
   const height = useSharedValue(0);
   const width = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
     height: height.value,
     width: width.value,
-    opacity: opacity.value,
   }));
 
   const adaptiveWidth = (() => {
@@ -38,10 +35,6 @@ const Card = memo<PropsType>((props) => {
   })();
 
   const initAnimation = () => {
-    opacity.value = withTiming(props.opacity, {
-      duration: props.duration,
-      easing: Easing.out(Easing.exp),
-    });
     width.value = withTiming(adaptiveWidth, {
       duration: props.duration,
       easing: Easing.out(Easing.exp),

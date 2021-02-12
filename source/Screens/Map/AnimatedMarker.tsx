@@ -9,25 +9,18 @@ import Animated, {
 } from 'react-native-reanimated';
 
 type PropsType = {
-  opacity: number;
   translateY: number;
   duration: number;
 };
 
 const AnimatedMarker = memo<PropsType>((props) => {
-  const opacity = useSharedValue(0);
   const translateY = useSharedValue(-20);
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
-    opacity: opacity.value,
   }));
 
   const initAnimation = () => {
     translateY.value = withTiming(props.translateY, {
-      duration: props.duration,
-      easing: Easing.out(Easing.exp),
-    });
-    opacity.value = withTiming(props.opacity, {
       duration: props.duration,
       easing: Easing.out(Easing.exp),
     });
