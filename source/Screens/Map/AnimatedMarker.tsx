@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Fontisto';
+import Icon from '../../Services/customFont/icomoon';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -37,7 +37,7 @@ const AnimatedMarker = memo<PropsType>((props) => {
 
   return (
     <Animated.View style={[styles.marker, animatedStyle]}>
-      <Icon name={'map-marker-alt'} size={30} color={'#C5283D'} />
+      <Icon name={'map-marker'} size={30} color={'#C5283D'} />
     </Animated.View>
   );
 });

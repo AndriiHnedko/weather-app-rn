@@ -6,7 +6,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from '../../Services/customFont/icomoon';
 import Loader from './Loader';
 import Animated, {
   Easing,
