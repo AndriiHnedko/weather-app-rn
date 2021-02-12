@@ -67,7 +67,7 @@ const Map = () => {
             <Marker
               coordinate={coordinate}
               onPress={onTouchMarker}
-              anchor={{ x: 0, y: 1.1 }}
+              anchor={{ x: 0.06, y: 1.02 }}
               style={styles.marker}>
               <WeatherMarker />
             </Marker>
