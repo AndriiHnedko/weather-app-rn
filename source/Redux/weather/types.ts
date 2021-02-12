@@ -14,7 +14,7 @@ type SetCurrentWeatherActionType = {
 
 type SetWeekWeatherActionType = {
   type: typeof SET_WEEK_WEATHER;
-  weekWeather: WeekWeatherType;
+  weekWeather: WeekWeatherType | null;
 };
 
 type SetLoadingActionType = {
@@ -31,7 +31,7 @@ type ResetWeekActionType = {
 
 export type StateType = {
   currentWeather?: CurrentWeatherType;
-  weekWeather?: WeekWeatherType;
+  weekWeather?: WeekWeatherType | null;
   loading: boolean;
 };
 

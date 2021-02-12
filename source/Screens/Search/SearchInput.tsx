@@ -1,16 +1,14 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getWeekWeatherCity } from '../../Redux/weather/actions';
 import SearchButton from './SearchButton';
+import { StoreType } from '../../Redux';
 
-type PropsType = {
-  defaultValue: string;
-};
-
-const SearchInput = memo<PropsType>(({ defaultValue }) => {
+const SearchInput = memo(() => {
   const _input = useRef<React.ElementRef<typeof TextInput>>(null);
   const dispatch = useDispatch();
+  const data = useSelector((s: StoreType) => s.weather.weekWeather);
   const [value, setValue] = useState('');
   const validate = value.length > 3;
   const onPressSearch = useCallback(() => {
@@ -20,8 +18,8 @@ const SearchInput = memo<PropsType>(({ defaultValue }) => {
     }
   }, [dispatch, value, validate]);
   useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
+    setValue(data ? `${data.city_name}, ${data.country_code}` : '');
+  }, [data]);
   return (
     <View style={[styles.container]}>
       <View style={styles.inputContainer}>

@@ -17,14 +17,14 @@ export const Weather = {
   weekCity(city: string) {
     return weatherInstance
       .get<WeekWeatherType>(`forecast/daily?city=${city}&key=${apiKey}&days=7`)
-      .then((r) => r.data);
+      .then((r) => r);
   },
   weekCoordinate(lat: number, lon: number) {
     return weatherInstance
       .get<WeekWeatherType>(
         `forecast/daily?lat=${lat}&lon=${lon}&days=${7}&key=${apiKey}`,
       )
-      .then((r) => r.data);
+      .then((r) => r);
   },
 };
 

@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react';
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import SearchInput from './SearchInput';
 import BottomTabBar from '../../Navigation/BottomTabBar/index';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,9 +20,6 @@ const Search = memo(() => {
   const windowWidth = Dimensions.get('window').width;
   const route = useRoute();
   const weatherData = useSelector((s: StoreType) => s.weather.weekWeather);
-  const defaultInputValue = weatherData
-    ? `${weatherData.city_name}, ${weatherData.country_code}`
-    : '';
   const translateX = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -40,18 +37,25 @@ const Search = memo(() => {
 
   const _renderWeather = () => {
     let counter = 0;
-    return weatherData?.data.map((el, id) => {
-      counter += 100;
+    if (weatherData && weatherData.data) {
+      return weatherData.data.map((el, id) => {
+        counter += 100;
+        return (
+          <WeatherField
+            temperature={el.temp}
+            picture={el.weather.icon}
+            date={el.valid_date}
+            delay={counter}
+            key={id}
+          />
+        );
+      });
+    }
+    if (weatherData === null) {
       return (
-        <WeatherField
-          temperature={el.temp}
-          picture={el.weather.icon}
-          date={el.valid_date}
-          delay={counter}
-          key={id}
-        />
+        <Text style={styles.text}>Nothing found, try another city...</Text>
       );
-    });
+    }
   };
 
   useEffect(() => {
@@ -61,7 +65,7 @@ const Search = memo(() => {
   return (
     <BottomTabBar onRepeatPress={repeatPressHandler}>
       <View style={[styles.container]}>
-        <SearchInput defaultValue={defaultInputValue} />
+        <SearchInput />
         <Animated.View style={[styles.result, animatedStyle]}>
           {_renderWeather()}
         </Animated.View>
@@ -80,6 +84,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginLeft: 35,
     marginRight: 70,
+  },
+  text: {
+    fontSize: 20,
+    color: 'white',
   },
 });
 

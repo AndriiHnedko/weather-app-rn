@@ -18,7 +18,7 @@ const setCurrentWeather = (data: CurrentWeatherType): ActionTypes => ({
   type: SET_CURRENT_WEATHER,
   currentWeather: data,
 });
-const setWeekWeather = (data: WeekWeatherType): ActionTypes => ({
+const setWeekWeather = (data: WeekWeatherType | null): ActionTypes => ({
   type: SET_WEEK_WEATHER,
   weekWeather: data,
 });
@@ -45,8 +45,13 @@ export const getWeekWeatherCity = (city: string): ThunkType => async (
   try {
     dispatch(resetWeek());
     dispatch(setLoading());
-    const data = await Weather.weekCity(city);
-    dispatch(setWeekWeather(data));
+    const response = await Weather.weekCity(city);
+    if (response.status === 200) {
+      dispatch(setWeekWeather(response.data));
+    }
+    if (response.status === 204) {
+      dispatch(setWeekWeather(null));
+    }
   } catch (e) {
     ToastAndroid.show(e.message, ToastAndroid.SHORT);
   }
@@ -59,8 +64,13 @@ export const getWeekWeatherCoordinates = (
   try {
     dispatch(resetWeek());
     dispatch(setLoading());
-    const data = await Weather.weekCoordinate(lat, lon);
-    dispatch(setWeekWeather(data));
+    const response = await Weather.weekCoordinate(lat, lon);
+    if (response.status === 200) {
+      dispatch(setWeekWeather(response.data));
+    }
+    if (response.status === 204) {
+      dispatch(setWeekWeather(null));
+    }
   } catch (e) {
     ToastAndroid.show(e.message, ToastAndroid.SHORT);
   }
