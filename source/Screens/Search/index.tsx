@@ -60,6 +60,15 @@ const Search = memo(() => {
         <Animated.View style={[styles.result, animatedStyle]}>
           <ScrollView style={styles.scroll}>{_renderWeather()}</ScrollView>
         </Animated.View>
+        {/*<View*/}
+        {/*  style={{*/}
+        {/*    backgroundColor: 'red',*/}
+        {/*    height: 50,*/}
+        {/*    width: 50,*/}
+        {/*    borderRadius: 25,*/}
+        {/*  }}>*/}
+        {/*  <></>*/}
+        {/*</View>*/}
       </View>
     </BottomTabBar>
   );
