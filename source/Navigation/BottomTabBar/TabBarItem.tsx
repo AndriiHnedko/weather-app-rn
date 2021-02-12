@@ -23,7 +23,7 @@ const TabBarItem: React.FC<TabItemProps> = ({
   return (
     <TouchableOpacity
       onPress={pressHandler}
-      activeOpacity={1}
+      activeOpacity={0.4}
       style={styles.container}>
       <Icon name={tabBarIcon} size={iconSize} color={color} />
       <Text style={[{ color: color }, labelStyle]}>{name}</Text>
